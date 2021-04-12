@@ -58,16 +58,16 @@ ylabel("")
 n = linspace(64*8,1518*8);
 % vetores y
 p=10^-4;
-y1 = (nchoosek(n,0)*(p.^0).*((1-p).^(n-0)))
+y1 = (1*(p^0)*((1-p).^(n-0)))
 p=10^-3;
-y2 = (nchoosek(n,0)*(p.^0).*((1-p).^(n-0)))
+y2 = (1*(p^0)*((1-p).^(n-0)))
 p=10^-2;
-y3 = (nchoosek(n,0)*(p.^0).*((1-p).^(n-0)))
+y3 = (1*(p^0)*((1-p).^(n-0)))
 % construção gráfico
 figure(2)
 % vetores semilogx para colocar o vetor x em logaritmico
 % loglog para colocar os dois
-semilogy(n,y1,'b',n,y2,'b--',n,y3,'b:')
+semilogy(n/8,y1,'b',n/8,y2,'b--',n/8,y3,'b:')
 %legenda
 legend('100 bytes', '200 bytes', '1000 bytes','location', 'SouthWest')
 %titulo

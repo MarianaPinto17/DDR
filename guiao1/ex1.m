@@ -1,3 +1,10 @@
+% Exercise: Consider a multiple choice test such that each question has n 
+% possible answers and only one is correct. Assume that the student has 
+% studied a percentage p (with 0% ≤ p ≤ 100%) of the test content. 
+% When a question addresses the content the student has studied, he selects
+% the right answer with 100% of probability. Otherwise, he selects randomly
+% one of the n answers with a uniform distribution.
+
 % 1.a : When p = 60% and n = 4, determine the probability of the student to
 % select the right answer. Answer = 70%
 n = 4;
