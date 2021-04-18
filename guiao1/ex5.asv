@@ -52,7 +52,7 @@ prob2=y4+y5
 % construção gráfico
 figure(2)
 %vetores
-plot(n,prob2)
+plot(n/8,prob2)
 %titulo
 title("Probability o")
 % label x
