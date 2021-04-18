@@ -23,36 +23,53 @@
 % vetor x
 n = linspace(2,5);
 
-% probabilidade de um pacote chegar sem erros para P1
-p = 10^-6;
-se1=(1*(p^0)*((1-p).^(n-0)));
+% Probabilidade de cada estado normal e em interferencia
+P1=1/(1+(8/600)+((8/600)*(5/200))+((8/600)*(5/200)*(2/50))+((8/600)*(5/200)*(2/50)*(1/5)))
+P2=(8/600)/(1+(8/600)+((8/600)*(5/200))+((8/600)*(5/200)*(2/50))+((8/600)*(5/200)*(2/50)*(1/5)))
+P3=((8/600)*(5/200))/(1+(8/600)+((8/600)*(5/200))+((8/600)*(5/200)*(2/50))+((8/600)*(5/200)*(2/50)*(1/5)))
+P4=((8/600)*(5/200)*(2/50))/(1+(8/600)+((8/600)*(5/200))+((8/600)*(5/200)*(2/50))+((8/600)*(5/200)*(2/50)*(1/5)))
+P5=((8/600)*(5/200)*(2/50)*(1/5))/(1+(8/600)+((8/600)*(5/200))+((8/600)*(5/200)*(2/50))+((8/600)*(5/200)*(2/50)*(1/5)))
 
-% probabilidade de um pacote chegar sem erros para P2
+% probabilidade de cada estado ter erro
+% probabilidade de um pacote chegar com erros para P1
+p = 10^-6
+ac1=(1*(p^0)*((1-p).^((64*8)-0)));
+e1=(1-ac1)
+
+% probabilidade de um pacote chegar com erros para P2
 p = 10^-5;
-se2=(1*(p^0)*((1-p).^(n-0)));
+ac2=(1*(p^0)*((1-p).^((64*8)-0)));
+e2=(1-ac2)
 
-% probabilidade de um pacote chegar sem erros para P3
+% probabilidade de um pacote chegar com erros para P3
 p = 10^-4;
-se3=(1*(p^0)*((1-p).^(n-0)));
+ac3=(1*(p^0)*((1-p).^((64*8)-0)));
+e3=(1-ac3)
 
-% probabilidade de um pacote chegar sem erros para P4
+% probabilidade de um pacote chegar com erros para P4
 p = 10^-3;
-se4=(1*(p^0)*((1-p).^(n-0)));
+ac4=(1*(p^0)*((1-p).^((64*8)-0)));
+e4=(1-ac4)
 
-% probabilidade de um pacote chegar sem erros para P5
+% probabilidade de um pacote chegar com erros para P5
 p = 10^-2;
-se5=(1*(p^0)*((1-p).^(n-0)));
+ac5=(1*(p^0)*((1-p).^((64*8)-0)));
+e5=(1-ac5)
 
-% vetores y
-y4=((se4*P4)./((se1*P1)+(se2*P2)+(se3*P3)+(se4*P4)+(se5*P4)))*100
-y5=((se5*P5)./((se1*P1)+(se2*P2)+(se3*P3)+(se4*P4)+(se5*P4)))*100
+% probability of false positives -> probabilidade para cada frame, todos
+% terem erros
+PE1 = e1.^n;
+PE2 = e2.^n;
+PE3 = e3.^n;
+PE4= e4.^n;
+PE5 = e5.^n;
 
-prob2=y4+y5
-
+AS = (P1*PE1)+(P2*PE2)+(P3*PE3)+(P4*PE4)+(P5*PE5);
+y1 = (((P1*PE1)+(P2*PE2)+(P3*PE3))./AS)*100;
 % construção gráfico
-figure(2)
+figure(1)
 %vetores
-plot(n,prob2)
+semilogy(n,y1)
 %titulo
 title("Probability o")
 % label x
@@ -61,9 +78,21 @@ xlabel("False positives")
 ylabel("Probability(%)")
 grid on
 
-
 % 5.b. Draw a plot with the probability of false negatives for n = 2, 3, 4 
 % and 5. Analyze and justify the results.
+y2 = (((P4)*(1-PE4))+((P5)*(1-PE5))./(1-AS))*100;
+% label y
+% construção gráfico
+figure(2)
+%vetores
+semilogy(n,y2)
+%titulo
+title("Probability o")
+% label x
+xlabel("False positives")
+% label y
+ylabel("Probability(%)")
+grid on
 
 
 % 5.c. Assume that the probabilities of false positives and false negatives
