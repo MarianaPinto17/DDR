@@ -1,0 +1,331 @@
+*************************************************************
+Using license file gurobi-client.lic
+Set parameter TokenServer to value opt-license.discovery.wisc.edu
+Read LP format model from file model.lp
+Reading time = 0.00 seconds
+: 284 rows, 284 columns, 747 nonzeros
+
+
+Checking threads settings... (NEOS allows a maximum of 4 threads)
+Changed value of parameter Threads to 4
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+Thread count: 32 physical cores, 64 logical processors, using up to 4 threads
+Optimize a model with 284 rows, 284 columns and 747 nonzeros
+Model fingerprint: 0x888700ae
+Variable types: 0 continuous, 284 integer (284 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+00, 1e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 236.0000000
+Presolve time: 0.00s
+Presolved: 284 rows, 284 columns, 747 nonzeros
+Variable types: 0 continuous, 284 integer (284 binary)
+
+Root relaxation: objective 4.800000e+01, 222 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0      48.0000000   48.00000  0.00%     -    0s
+
+Explored 0 nodes (222 simplex iterations) in 0.01 seconds
+Thread count was 4 (of 64 available processors)
+
+Solution count 2: 48 236 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.800000000000e+01, best bound 4.800000000000e+01, gap 0.0000%
+
+
+********** Begin .sol file *************
+
+# Objective value = 48
+x6 0
+x7 0
+x8 0
+x9 0
+x10 1
+x11 0
+x12 0
+x13 1
+x14 0
+x15 0
+x16 1
+x17 0
+x18 0
+x19 0
+x20 0
+x21 1
+x22 0
+x23 0
+x24 0
+x25 0
+x26 0
+x27 0
+x28 0
+x29 0
+x30 1
+x31 0
+x32 0
+x33 0
+x34 0
+x35 0
+x36 0
+x37 0
+x38 0
+x39 0
+x40 0
+y6,6 0
+y6,7 0
+y6,14 0
+y6,15 0
+y6,16 1
+y6,17 0
+y6,18 0
+y6,19 0
+y6,20 0
+y7,6 0
+y7,7 0
+y7,8 0
+y7,16 0
+y7,17 0
+y7,18 0
+y7,19 0
+y7,20 0
+y7,21 1
+y8,7 0
+y8,8 0
+y8,9 0
+y8,10 1
+y8,20 0
+y8,21 0
+y8,22 0
+y8,23 0
+y8,24 0
+y8,25 0
+y9,8 0
+y9,9 0
+y9,10 1
+y9,11 0
+y9,21 0
+y9,22 0
+y9,23 0
+y9,24 0
+y9,25 0
+y9,26 0
+y9,27 0
+y10,8 0
+y10,9 0
+y10,10 0
+y10,11 0
+y10,12 0
+y10,13 0
+y10,22 0
+y10,23 0
+y10,24 0
+y10,25 0
+y10,26 0
+y10,27 0
+y10,28 0
+y10,29 0
+y10,30 1
+y11,9 0
+y11,10 0
+y11,11 0
+y11,12 0
+y11,13 0
+y11,26 0
+y11,27 0
+y11,28 0
+y11,29 0
+y11,30 1
+y12,10 1
+y12,11 0
+y12,12 0
+y12,13 0
+y12,14 0
+y12,30 0
+y12,31 0
+y12,32 0
+y13,10 1
+y13,11 0
+y13,12 0
+y13,13 0
+y13,14 0
+y13,33 0
+y13,34 0
+y13,35 0
+y13,36 0
+y13,37 0
+y13,38 0
+y14,6 0
+y14,12 0
+y14,13 1
+y14,14 0
+y14,15 0
+y14,33 0
+y14,34 0
+y14,35 0
+y14,36 0
+y14,37 0
+y14,38 0
+y15,6 0
+y15,14 0
+y15,15 0
+y15,16 1
+y15,39 0
+y15,40 0
+y16,6 0
+y16,7 0
+y16,15 0
+y16,16 1
+y16,17 0
+y16,18 0
+y16,19 0
+y16,39 0
+y16,40 0
+y17,6 0
+y17,7 0
+y17,16 1
+y17,17 0
+y17,18 0
+y17,19 0
+y18,6 0
+y18,7 0
+y18,16 1
+y18,17 0
+y18,18 0
+y18,19 0
+y19,6 0
+y19,7 0
+y19,16 1
+y19,17 0
+y19,18 0
+y19,19 0
+y19,20 0
+y20,6 0
+y20,7 0
+y20,8 0
+y20,19 0
+y20,20 0
+y20,21 1
+y21,7 0
+y21,8 0
+y21,9 0
+y21,20 0
+y21,21 1
+y21,22 0
+y22,8 0
+y22,9 0
+y22,10 0
+y22,21 1
+y22,22 0
+y22,23 0
+y22,24 0
+y22,25 0
+y23,8 0
+y23,9 0
+y23,10 1
+y23,22 0
+y23,23 0
+y23,24 0
+y23,25 0
+y24,8 0
+y24,9 0
+y24,10 1
+y24,22 0
+y24,23 0
+y24,24 0
+y24,25 0
+y25,8 0
+y25,9 0
+y25,10 1
+y25,22 0
+y25,23 0
+y25,24 0
+y25,25 0
+y26,9 0
+y26,10 1
+y26,11 0
+y26,26 0
+y26,27 0
+y27,9 0
+y27,10 0
+y27,11 0
+y27,26 0
+y27,27 0
+y27,28 0
+y27,29 0
+y27,30 1
+y28,10 1
+y28,11 0
+y28,27 0
+y28,28 0
+y28,29 0
+y28,30 0
+y29,10 1
+y29,11 0
+y29,27 0
+y29,28 0
+y29,29 0
+y29,30 0
+y30,10 1
+y30,11 0
+y30,12 0
+y30,27 0
+y30,28 0
+y30,29 0
+y30,30 0
+y30,31 0
+y30,32 0
+y31,12 0
+y31,30 1
+y31,31 0
+y31,32 0
+y32,12 0
+y32,30 1
+y32,31 0
+y32,32 0
+y33,13 1
+y33,14 0
+y33,33 0
+y33,34 0
+y33,35 0
+y34,13 1
+y34,14 0
+y34,33 0
+y34,34 0
+y34,35 0
+y35,13 1
+y35,14 0
+y35,33 0
+y35,34 0
+y35,35 0
+y36,13 1
+y36,14 0
+y36,36 0
+y36,37 0
+y36,38 0
+y37,13 1
+y37,14 0
+y37,36 0
+y37,37 0
+y37,38 0
+y38,13 1
+y38,14 0
+y38,36 0
+y38,37 0
+y38,38 0
+y39,15 0
+y39,16 1
+y39,39 0
+y39,40 0
+y40,15 0
+y40,16 1
+y40,39 0
+y40,40 0
+
+********** End .sol file ***************
