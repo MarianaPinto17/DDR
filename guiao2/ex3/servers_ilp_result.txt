@@ -1,0 +1,75 @@
+*************************************************************
+Using license file gurobi-client.lic
+Set parameter TokenServer to value opt-license.discovery.wisc.edu
+Read LP format model from file model.lp
+Reading time = 0.00 seconds
+: 35 rows, 35 columns, 249 nonzeros
+
+
+Checking threads settings... (NEOS allows a maximum of 4 threads)
+Changed value of parameter Threads to 4
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+Thread count: 36 physical cores, 72 logical processors, using up to 4 threads
+Optimize a model with 35 rows, 35 columns and 249 nonzeros
+Model fingerprint: 0x2bdcc6e7
+Variable types: 0 continuous, 35 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [8e+00, 1e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 56.0000000
+Presolve removed 35 rows and 35 columns
+Presolve time: 0.00s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 72 available processors)
+
+Solution count 2: 48 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 4.800000000000e+01, best bound 4.800000000000e+01, gap 0.0000%
+
+
+********** Begin .sol file *************
+
+# Objective value = 48
+x6 0
+x7 0
+x8 0
+x9 0
+x10 1
+x11 0
+x12 0
+x13 1
+x14 0
+x15 0
+x16 1
+x17 0
+x18 0
+x19 0
+x20 0
+x21 1
+x22 0
+x23 0
+x24 0
+x25 0
+x26 0
+x27 0
+x28 0
+x29 0
+x30 1
+x31 0
+x32 0
+x33 0
+x34 0
+x35 0
+x36 0
+x37 0
+x38 0
+x39 0
+x40 0
+
+********** End .sol file ***************
