@@ -78,7 +78,7 @@ c = [repelem(12, 10) repelem(8, 25)];
 n = length(c);
 
 % Generate LP file
-generateLP('servers_ilp',I,c,n)
+generateLP('servers_ilp_script.lp',I,c,n)
 
 
 %% Resultados
@@ -86,49 +86,6 @@ generateLP('servers_ilp',I,c,n)
 % custo total das ligações internet é de 48.
 % São necessários 6 servidores sendo eles os seguintes.
 % {10, 13, 16, 21, 30}
-% A matriz S (solução) seguinte representa as ligações:
-S= [ 6 16
-7 21
-8 10
-9 10
-10 30
-11 30
-12 10
-13 10
-14 13
-15 16
-%16 16
-17 16
-18 16
-19 16
-20 21
-%21 21
-22 21
-23 10
-24 10
-25 10
-26 10
-27 30
-28 10
-29 10
-30 10
-31 30
-32 30
-33 13
-34 13
-35 13
-36 13
-37 13
-38 13
-39 16
-40 16];
-
-% Solution graph
-figure(2)
-A = S(:,1);
-B = S(:,2);
-H = graph(B,A);
-pS = plot(H);
 
 
 %% Exercise 3 functions
@@ -195,27 +152,19 @@ function generateLP(fname,I,c,n)
     for j=1:size(I, 1)
         tActual = I(j, 1);
         if (tPast ~= tActual && tPast ~= -1)
-            fprintf(fid,' = 1\n');
+            fprintf(fid,' >= 1\n');
         end
-        fprintf(fid,' + y%d,%d', I(j, 1), I(j, 2));
+        fprintf(fid,' + x%d', I(j, 2));
 
         tPast = I(j, 1);
     end
     
     fprintf(fid,' = 1\n');
 
-    for j=1:size(I, 1)
-        fprintf(fid, " + y%d,%d - x%d <= 0\n", I(j, 1), I(j, 2), I(j, 2));
-    end
-
     fprintf(fid,'Binary\n');
 
     for i=1:n
         fprintf(fid,' x%d\n',i+5);
-    end
-
-    for i=1:size(I, 1)
-        fprintf(fid,' y%d,%d\n',I(i, 1), I(i, 2));
     end
 
     fprintf(fid,'End\n');
