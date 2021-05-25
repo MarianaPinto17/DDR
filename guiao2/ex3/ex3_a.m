@@ -84,7 +84,7 @@ generateLP('servers_ilp_script.lp',I,c,n)
 %% Resultados
 % Atendendo ao resultados obtidos deste problema ILP, conclui-se que o
 % custo total das ligações internet é de 48.
-% São necessários 6 servidores sendo eles os seguintes.
+% São necessários 5 servidores sendo eles os seguintes.
 % {10, 13, 16, 21, 30}
 
 
