@@ -1,56 +1,49 @@
 % e)
 
-N = 10;
 R = 100000;
-alfa = 0.1;
-% Configuration 1: n = 10, S = 100 Mbps
-% Configuration 2: n = 4, S = 250 Mbps
-% Configuration 3: n = 1, S = 1000 Mbps
-n = 4;
 S = 10000;
 p = 24;
-W = 600;
 lambda = 100000/(7*24);
 fname = 'movies.txt';
+n = 2;
+W = 0;
+alfa=0.1;
 
-blockingProbHD = zeros(1,length(lambda));
-termHD = zeros(1,length(lambda));
-blockingProb4K = zeros(1,length(lambda));
-term4K = zeros(1,length(lambda));
+% Init matrixes
+blocking_hd = zeros(1,10);
+blocking_4k = zeros(1,10);
+blocking_hd_2 = zeros(1,10);
+blocking_4k_2 = zeros(1,10);
 
-for x=1:10
-    b_hd = zeros(1,N);
-    b_4k = zeros(1,N);
-    
-    for i=1:N
-        [b_hd(i),b_4k(i)] = simulator2(lambda,p,n,S,W,R,fname);
-    end
-    
-    % Blocking probability (HD)
-    blockingProbHD(x) = mean(b_hd);
-    termHD(x) = norminv(1-alfa/2)*sqrt(var(b_hd)/N);
-    
-    % Blocking probability (4K)
-    blockingProb4K(x) = mean(b_4k);
-    term4K(x) = norminv(1-alfa/2)*sqrt(var(b_4k)/N);
-    
+% Run simulator2 10 times
+for i=1:10
+    [blocking_hd(i), blocking_4k(i)] = simulator2(lambda,p,n,S,W,R,fname)
+end
+for i=1:10
+    [blocking_hd_2(i), blocking_4k_2(i)] = simulator2(lambda,p,n-1,S,W,R,fname)
 end
 
-% Bar 1 - Blocking probability (HD)
-figure(1)
-bar(lambda, blockingProbHD)
-xlabel('λ (requests/hour)')
-hold on
-err = errorbar(lambda, blockingProbHD, termHD, termHD);
-err.Color = [0 0 0];
-err.LineStyle = 'none';
-hold off
+% Calculate blocking probability of HD
+blocking_prob_hd = mean(blocking_hd);
+confidence_hd = norminv(1-alfa/2)*sqrt(var(blocking_hd)/10);
+blocking_prob_hd_2 = mean(blocking_hd_2);
+confidence_hd_2 = norminv(1-alfa/2)*sqrt(var(blocking_hd_2)/10);
 
-% Bar 2 - Blocking probability (4K)
-figure(2)
-bar(lambda, blockingProb4K)
-hold on
-err = errorbar(lambda, blockingProb4K, term4K, term4K);
-err.Color = [0 0 0];
-err.LineStyle = 'none';
-hold off
+% Calculate blocking probability of 4K
+blocking_prob_4k = mean(blocking_4k);
+confidence_4k = norminv(1-alfa/2)*sqrt(var(blocking_4k)/10);
+blocking_prob_4k_2 = mean(blocking_4k_2);
+confidence_4k_2 = norminv(1-alfa/2)*sqrt(var(blocking_4k_2)/10);
+
+% If both blocking probabilities +- confidence values are <= 1,
+% Bingo!
+if blocking_prob_hd - confidence_hd <= 0.1 && blocking_prob_hd_2 + confidence_hd_2 <= 1
+    if blocking_prob_4k - confidence_4k <= 0.1 && blocking_prob_4k_2 + confidence_4k_2 <= 1
+        fprintf("\nn=%d\n", n);
+        fprintf("W=%d\n", W);
+        fprintf("HD Blocking Probability=%f%%\n", blocking_prob_hd);
+        fprintf("HD confidence=%f%%\n", confidence_hd);
+        fprintf("4K Blocking Probability=%f%%\n", blocking_prob_4k);
+        fprintf("4K confidence=%f%%\n", confidence_4k);
+    end
+end
