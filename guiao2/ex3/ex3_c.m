@@ -6,7 +6,7 @@ TIER_3_SUBS = 2500;
 SUBS_TOTAL = TIER_2_SUBS * 10 + TIER_3_SUBS * 25;
 
 % N => número de servidores calculados na alínea b)
-N = 12;
+N = 76;
 
 % ASs calculated in a)
 % ==> 10, 13, 16, 21, 30
@@ -63,5 +63,5 @@ fprintf("AS 30: %d\n", NS_30);
 
 TOTAL_NS = (NS_10 + NS_13 + NS_16 + NS_21 + NS_30) == N
 
-% Concluímos então que tem-se 3 servidores no AS 10, 3 servidores no AS 13,
-% 3 servidores no AS 16, 1 servidor no AS 21 e 2 servidores no AS 30
+% Concluímos então que tem-se 19 servidores no AS 10, 17 servidores no AS 13,
+% 19 servidores no AS 16, 9 servidor no AS 21 e 12 servidores no AS 30
