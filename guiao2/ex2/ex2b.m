@@ -3,7 +3,9 @@
 N = 10;
 R = 10000;
 alfa = 0.1;
+% Configuration 1: n = 10, S = 100 Mbps
 % Configuration 2: n = 4, S = 250 Mbps
+% Configuration 3: n = 1, S = 1000 Mbps
 n = 4;
 S = 250;
 p = 20;
@@ -37,18 +39,18 @@ end
 % Bar 1 - Blocking probability (HD)
 figure(1)
 bar(lambda, blockingProbHD)
+title("Blocking Probability (HD)")
 xlabel('λ (requests/hour)')
+ylabel('%')
 hold on
-err = errorbar(lambda, blockingProbHD, termHD, termHD);
-err.Color = [0 0 0];
-err.LineStyle = 'none';
+
 hold off
 
 % Bar 2 - Blocking probability (4K)
 figure(2)
 bar(lambda, blockingProb4K)
+title("Blocking Probability (4K)")
+xlabel('λ (requests/hour)')
+ylabel('%')
 hold on
-err = errorbar(lambda, blockingProb4K, term4K, term4K);
-err.Color = [0 0 0];
-err.LineStyle = 'none';
 hold off
