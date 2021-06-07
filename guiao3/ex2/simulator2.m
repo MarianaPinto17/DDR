@@ -63,14 +63,11 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
             % The probability of each packet size 𝐵𝑖 being sent without 
             % errors is:
             % Pi = (1 - b) ^ (8 * PacketSize)
-            % So, the packet loss (in %) is the weighted sum of the packet 
-            % loss probability of each packet size, where the weights 
-            % are the probabilities of the packet sizes
             Pi = (1-b)^(8*PacketSize);
             r = rand();
             
-            if (r < Pi) % with errors
-                PISUM = PISUM * (Pi*(1-Pi));
+            if (r > Pi) % with errors
+                LOSTPACKETS= LOSTPACKETS + 1;
             else % without errors
                 TRANSMITTEDBYTES= TRANSMITTEDBYTES + PacketSize;
                 DELAYS= DELAYS + (Clock - ArrivalInstant);
@@ -91,8 +88,7 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
 end
 
 %Performance parameters determination:
-%PL= 100*LOSTPACKETS/TOTALPACKETS;      % in %
-PL=100*PISUM;
+PL= 100*LOSTPACKETS/TOTALPACKETS;      % in %
 APD= 1000*DELAYS/TRANSMITTEDPACKETS;   % in milliseconds
 MPD= 1000*MAXDELAY;                    % in milliseconds
 TT= 10^(-6)*TRANSMITTEDBYTES*8/Clock;  % in Mbps
