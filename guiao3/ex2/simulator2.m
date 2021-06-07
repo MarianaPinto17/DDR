@@ -27,6 +27,7 @@ TRANSMITTEDPACKETS= 0; % No. of transmitted packets
 TRANSMITTEDBYTES= 0;   % Sum of the Bytes of transmitted packets
 DELAYS= 0;             % Sum of the delays of transmitted packets
 MAXDELAY= 0;           % Maximum delay among all transmitted packets
+PISUM = 0;
 
 %Auxiliary variables:
 % Initializing the simulation clock:
@@ -59,12 +60,18 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
                 end
             end
         case DEPARTURE                     % If first event is a DEPARTURE
-            % rand com o valor de PL se for maior que 0 é com erro
-            % se não for é sem erro
+            % The probability of each packet size 𝐵𝑖 being sent without 
+            % errors is:
+            % Pi = (1 - b) ^ (8 * PacketSize)
+            % So, the packet loss (in %) is the weighted sum of the packet 
+            % loss probability of each packet size, where the weights 
+            % are the probabilities of the packet sizes
+            Pi = (1-b)^(8*PacketSize);
+            r = rand();
             
-            if (rand())
-                %este é sem erros
-            else
+            if (r < Pi) % with errors
+                PISUM = PISUM * (Pi*(1-Pi));
+            else % without errors
                 TRANSMITTEDBYTES= TRANSMITTEDBYTES + PacketSize;
                 DELAYS= DELAYS + (Clock - ArrivalInstant);
                 if Clock - ArrivalInstant > MAXDELAY
@@ -84,7 +91,8 @@ while TRANSMITTEDPACKETS<P               % Stopping criterium
 end
 
 %Performance parameters determination:
-PL= 100*LOSTPACKETS/TOTALPACKETS;      % in %
+%PL= 100*LOSTPACKETS/TOTALPACKETS;      % in %
+PL=100*PISUM;
 APD= 1000*DELAYS/TRANSMITTEDPACKETS;   % in milliseconds
 MPD= 1000*MAXDELAY;                    % in milliseconds
 TT= 10^(-6)*TRANSMITTEDBYTES*8/Clock;  % in Mbps
